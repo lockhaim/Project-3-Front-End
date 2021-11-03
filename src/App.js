@@ -21,7 +21,7 @@ const App = () => {
           return (
             <li>
               {recipe.description}
-            <li>
+            </li>
           )
         })}
       </ul>
