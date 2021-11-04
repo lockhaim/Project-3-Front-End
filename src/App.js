@@ -72,6 +72,18 @@ const App = () => {
       })
   },[])
 
+  const handleDelete = (recipeData) => {
+      axios
+          .delete(`https://project-3-recipes.herokuapp.com/recipes/${recipeData._id}`)
+          .then(() => {
+              axios
+                  .get(`https://project-3-recipes.herokuapp.com/recipes`)
+                  .then((response) => {
+                      setRecipes(response.data)
+                  })
+          })
+  }
+
   return (
     <main>
       <h1>Hello World!</h1>
@@ -85,7 +97,9 @@ const App = () => {
         addNewRecipe={addNewRecipe}
       />
       {console.log(recipes)}
-      <RecipeIndex foods={recipes}/>
+      <RecipeIndex foods={recipes}
+        handleDelete={handleDelete}
+      />
 
     </main>
   )

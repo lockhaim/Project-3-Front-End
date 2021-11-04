@@ -1,3 +1,8 @@
+import axios from 'axios'
+import {useState} from 'react'
+
+
+
 const RecipeIndex = (props) => {
   return (
     <div>
@@ -5,8 +10,10 @@ const RecipeIndex = (props) => {
         {props.foods.map((recipe) => {
           return (
             <li>
-              {recipe.title}
-              {recipe.description}
+              {recipe.title}<br/>
+              {recipe.description}<br/>
+              {recipe.time}<br/>
+              <button onClick={ (event)=> {props.handleDelete(recipe)}}>DELETE</button>
             </li>
           )
         })}
