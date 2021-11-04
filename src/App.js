@@ -80,6 +80,7 @@ const App = () => {
         addNewDirections={addNewDirections}
         addNewTime={addNewTime}
         addNewImage={addNewImage}
+        addNewRecipe={addNewRecipe}
       />
       {console.log(recipes)}
       <ul>
