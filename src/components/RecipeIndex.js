@@ -1,7 +1,4 @@
-import axios from 'axios'
-import {useState} from 'react'
-
-
+import EditRecipeForm from './editRecipeForm'
 
 const RecipeIndex = (props) => {
   return (
@@ -13,7 +10,16 @@ const RecipeIndex = (props) => {
               {recipe.title}<br/>
               {recipe.description}<br/>
               {recipe.time}<br/>
-              <button onClick={ (event)=> {props.handleDelete(recipe)}}>DELETE</button>
+              <button onClick={ (event)=> {props.handleDelete(recipe)}}>Delete</button>
+              <EditRecipeForm handleEditRecipe={props.handleEditRecipe}
+              addNewTitle={props.addNewTitle}
+              addNewDescription={props.addNewDescription}
+              addNewIngredients={props.addNewIngredients}
+              addNewDirections={props.addNewDirections}
+              addNewTime={props.addNewTime}
+              addNewImage={props.addNewImage}
+              />
+
             </li>
           )
         })}
