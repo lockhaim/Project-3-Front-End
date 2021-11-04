@@ -4,6 +4,7 @@ import {useState, useEffect} from 'react'
 import axios from 'axios'
 
 import NewRecipeForm from './components/NewRecipeForm'
+import RecipeIndex from './components/RecipeIndex'
 
 const App = () => {
   const [recipes, setRecipes] = useState([])
@@ -57,7 +58,7 @@ const App = () => {
       ).then(() => {
         axios
           .get('https://project-3-recipes.herokuapp.com/recipes')
-          .then(() => {
+          .then((response) => {
             setRecipes(response.data)
           })
       })
@@ -70,6 +71,7 @@ const App = () => {
         setRecipes(response.data)
       })
   },[])
+
   return (
     <main>
       <h1>Hello World!</h1>
@@ -83,17 +85,8 @@ const App = () => {
         addNewRecipe={addNewRecipe}
       />
       {console.log(recipes)}
-      <ul>
-        {recipes.map((recipe) => {
-          return (
-            <li>
-              {recipe.title}
-              {recipe.description}
-              {recipe.ingredients}
-            </li>
-          )
-        })}
-      </ul>
+      <RecipeIndex foods={recipes}/>
+
     </main>
   )
 }
