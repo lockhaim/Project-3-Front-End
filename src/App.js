@@ -84,6 +84,28 @@ const App = () => {
           })
   }
 
+  const handleEditRecipe = (recipeData) => {
+      axios
+        .put(
+            `https://project-3-recipes.herokuapp.com/recipes/${recipeData._id}`,
+            {
+                title:newTitle,
+                description:newDescription,
+                ingredients:newIngredients,
+                time:newTime,
+                image:newImage,
+                complete:newComplete,
+            }
+        )
+        .then(()=>{
+            axios
+            .get('https://project-3-recipes.herokuapp.com/recipes')
+            .then((response)=>{
+                setRecipes(response.data)
+            })
+        })
+  }
+
   return (
     <main>
       <h1>Hello World!</h1>
@@ -99,6 +121,7 @@ const App = () => {
       {console.log(recipes)}
       <RecipeIndex foods={recipes}
         handleDelete={handleDelete}
+        handleEditRecipe={handleEditRecipe}
       />
 
     </main>
