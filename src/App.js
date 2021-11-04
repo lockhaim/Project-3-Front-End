@@ -3,19 +3,22 @@ import './App.css';
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 
+import NewRecipeForm from './components/NewRecipeForm'
+
 const App = () => {
   const [recipes, setRecipes] = useState([])
 
   useEffect(() => {
     axios
-      .get('https://project-3-recipes.herokuapp.com/recipes')
+      .get('http://localhost:3000/recipes')
       .then((response) => {
         setRecipes(response.data)
       })
-  })
+  },[])
   return (
     <main>
       <h1>Hello World!</h1>
+      {console.log(recipes)}
       <ul>
         {recipes.map((recipe) => {
           return (
