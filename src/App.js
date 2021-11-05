@@ -122,6 +122,12 @@ const App = () => {
       <RecipeIndex foods={recipes}
         handleDelete={handleDelete}
         handleEditRecipe={handleEditRecipe}
+        addNewTitle={addNewTitle}
+        addNewDescription={addNewDescription}
+        addNewIngredients={addNewIngredients}
+        addNewDirections={addNewDirections}
+        addNewTime={addNewTime}
+        addNewImage={addNewImage}
       />
 
     </main>
