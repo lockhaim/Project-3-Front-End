@@ -3,14 +3,14 @@ import EditRecipeForm from './editRecipeForm'
 const RecipeIndex = (props) => {
   return (
     <div>
-      <ul>
+      <ul class='flex-container'>
         {props.foods.map((recipe) => {
           return (
-            <li>
+            <li class='recipe'>
               {recipe.title}<br/>
               {recipe.description}<br/>
               {recipe.time}<br/>
-              <button onClick={ (event)=> {props.handleDelete(recipe)}}>Delete</button>
+              <button class='button' onClick={ (event)=> {props.handleDelete(recipe)}}>Delete</button>
               <EditRecipeForm handleEditRecipe={props.handleEditRecipe}
               addNewTitle={props.addNewTitle}
               addNewDescription={props.addNewDescription}
