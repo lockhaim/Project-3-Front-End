@@ -96,6 +96,10 @@
   }
 }
 
+main {
+  background-color: #994d00;
+}
+
 #modal {
   background-color: rgba(60,30,0,0.7);
 	position: fixed;
