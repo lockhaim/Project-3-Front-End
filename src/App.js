@@ -42,6 +42,16 @@ const App = () => {
     setNewImage(event.target.value)
   }
 
+  const modal = document.getElementById('modal')
+
+  const displayModal = () => {
+    modal.setAttribute('class', 'show')
+  }
+
+  const hideModal = () => {
+    modal.classList.replace('show', 'hide')
+  }
+
   const addNewRecipe = (event) => {
     event.preventDefault()
     axios
@@ -62,6 +72,7 @@ const App = () => {
             setRecipes(response.data)
           })
       })
+    hideModal()
   }
 
   useEffect(() => {
@@ -106,6 +117,9 @@ const App = () => {
         })
   }
 
+
+
+
   return (
     <main>
       <h1>Hello World!</h1>
@@ -117,6 +131,8 @@ const App = () => {
         addNewTime={addNewTime}
         addNewImage={addNewImage}
         addNewRecipe={addNewRecipe}
+        displayModal={displayModal}
+        hideModal={hideModal}
       />
       {console.log(recipes)}
       <RecipeIndex foods={recipes}
