@@ -1,6 +1,6 @@
 const EditRecipeForm = (props) => {
     return (
-        <div>
+        <div className="newFormModal">
             <h4>Edit Recipe</h4>
             <form
               id={props.recipe._id}

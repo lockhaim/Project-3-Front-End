@@ -95,3 +95,33 @@
     transform: rotate(360deg);
   }
 }
+
+#modal {
+  background-color: rgba(60,30,0,0.7);
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 1;
+  overflow: auto;
+}
+
+#modalInfo {
+  background: #ffb366;
+  width: 400px;
+  height: 400px;
+  margin: auto;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
