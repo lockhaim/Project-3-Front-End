@@ -129,3 +129,7 @@ main {
 .hide {
   display: none;
 }
+
+.submit {
+  width: 100%;
+}
