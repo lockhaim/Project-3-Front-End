@@ -42,6 +42,16 @@ const App = () => {
     setNewImage(event.target.value)
   }
 
+  const modal = document.getElementById('modal')
+
+  const displayModal = () => {
+    modal.setAttribute('class', 'show')
+  }
+
+  const hideModal = () => {
+    modal.classList.replace('show', 'hide')
+  }
+
   const addNewRecipe = (event) => {
     event.preventDefault()
     axios
@@ -62,6 +72,7 @@ const App = () => {
             setRecipes(response.data)
           })
       })
+    hideModal()
   }
 
   useEffect(() => {
@@ -84,6 +95,31 @@ const App = () => {
           })
   }
 
+  const handleEditRecipe = (recipeData) => {
+      axios
+        .put(
+            `https://project-3-recipes.herokuapp.com/recipes/${recipeData._id}`,
+            {
+                title:newTitle,
+                description:newDescription,
+                ingredients:newIngredients,
+                time:newTime,
+                image:newImage,
+                complete:newComplete,
+            }
+        )
+        .then(()=>{
+            axios
+            .get('https://project-3-recipes.herokuapp.com/recipes')
+            .then((response)=>{
+                setRecipes(response.data)
+            })
+        })
+  }
+
+
+
+
   return (
     <main>
       <h1>Hello World!</h1>
@@ -95,10 +131,19 @@ const App = () => {
         addNewTime={addNewTime}
         addNewImage={addNewImage}
         addNewRecipe={addNewRecipe}
+        displayModal={displayModal}
+        hideModal={hideModal}
       />
       {console.log(recipes)}
       <RecipeIndex foods={recipes}
         handleDelete={handleDelete}
+        handleEditRecipe={handleEditRecipe}
+        addNewTitle={addNewTitle}
+        addNewDescription={addNewDescription}
+        addNewIngredients={addNewIngredients}
+        addNewDirections={addNewDirections}
+        addNewTime={addNewTime}
+        addNewImage={addNewImage}
       />
 
     </main>
