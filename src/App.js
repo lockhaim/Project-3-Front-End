@@ -190,7 +190,7 @@ const App = () => {
 
   return (
     <main>
-      <h1>Culinary React-tions</h1>
+      <h1 class="main-header">Culinary React-tions</h1>
       <div>
         {toggleLogout ?
           <button onClick={handleLogout} class="button">Logout</button>
