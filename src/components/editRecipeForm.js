@@ -20,7 +20,11 @@ const EditRecipeForm = (props) => {
             Time (in minutes): <input type="text" onChange={props.addNewTime} placeholder={props.recipe.time}/><br/>
 
             Image: <input type="text" onChange={props.addNewImage} placeholder={props.recipe.image}/><br/>
+            {props.currentUser.username ?
             <input class='button' type='submit' value='submit'/>
+            :
+            null
+            }
             </form>
         </div>
     )

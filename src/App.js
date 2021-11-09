@@ -5,8 +5,13 @@ import axios from 'axios'
 
 import NewRecipeForm from './components/NewRecipeForm'
 import RecipeIndex from './components/RecipeIndex'
+import LoginForm from './components/LoginForm'
+import NewAccountForm from './components/NewAccountForm'
 
 const App = () => {
+  ///////////////////////////
+  // recipe states
+  ///////////////////////////
   const [recipes, setRecipes] = useState([])
   const [newTitle, setNewTitle] = useState()
   const [newDescription, setNewDescription] = useState()
@@ -15,7 +20,6 @@ const App = () => {
   const [newTime, setNewTime] = useState()
   const [newImage, setNewImage] = useState()
   const [newComplete, setNewComplete] = useState(false)
-
 
   //new form handlers
   const addNewTitle = (event) => {
@@ -42,6 +46,7 @@ const App = () => {
     setNewImage(event.target.value)
   }
 
+  //modal code
   const modal = document.getElementById('modal')
 
   const displayModal = () => {
@@ -103,6 +108,7 @@ const App = () => {
                 title:newTitle,
                 description:newDescription,
                 ingredients:newIngredients,
+                directions: newDirections,
                 time:newTime,
                 image:newImage,
                 complete:newComplete,
@@ -117,23 +123,111 @@ const App = () => {
         })
   }
 
+  ///////////////////////////
+  // user states
+  ///////////////////////////
+  const [toggleLogin, setToggleLogin] = useState(true)
+  const [toggleError, setToggleError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
+  const [toggleLogout, setToggleLogout] = useState(false)
+  const [currentUser, setCurrentUser] = useState({})
+
+  const handleCreateUser = (userObj) => {
+    axios.post(
+      'https://project-3-recipes.herokuapp.com/newaccount', userObj
+    ).then((response) => {
+      if (response.data.username) {
+        setToggleError(false)
+        setErrorMessage('')
+        setCurrentUser(response.data)
+        handleToggleLogout()
+      } else {
+        setErrorMessage(response.data)
+        setToggleError(true)
+      }
+    })
+  }
+
+  const handleLogin = (userObj) => {
+    axios.put(
+      'https://project-3-recipes.herokuapp.com/login', userObj
+    ).then((response) => {
+      if(response.data.username) {
+        setToggleError(false)
+        setErrorMessage('')
+        setCurrentUser(response.data)
+        handleToggleLogout()
+      } else {
+        setToggleError(true)
+        setErrorMessage(response.data)
+      }
+    })
+  }
+
+  const handleLogout = () => {
+    setCurrentUser({})
+    handleToggleLogout()
+  }
+
+  const handleToggleForm = () => {
+    setToggleError(false)
+    if (toggleLogin === true) {
+      setToggleLogin(false)
+    } else {
+      setToggleLogin(true)
+    }
+  }
+
+  const handleToggleLogout = () => {
+    if (toggleLogout) {
+      setToggleLogout(false)
+    } else {
+      setToggleLogout(true)
+    }
+  }
 
 
 
   return (
     <main>
-      <h1 class='main-header'>Welcome to Culinary REACT-ion!</h1>
-      <NewRecipeForm
-        addNewTitle={addNewTitle}
-        addNewDescription={addNewDescription}
-        addNewIngredients={addNewIngredients}
-        addNewDirections={addNewDirections}
-        addNewTime={addNewTime}
-        addNewImage={addNewImage}
-        addNewRecipe={addNewRecipe}
-        displayModal={displayModal}
-        hideModal={hideModal}
-      />
+      <h1 class="main-header">Welcome to Culinary REACT-ion!</h1>
+      <div>
+        {toggleLogout ?
+          <button onClick={handleLogout} class="button">Logout</button>
+          :
+            <div>
+                <LoginForm
+                  handleLogin={handleLogin}
+                  toggleError={toggleError}
+                  errorMessage={errorMessage}
+                />
+                <NewAccountForm
+                  handleCreateUser={handleCreateUser}
+                  toggleError={toggleError}
+                  errorMessage={errorMessage}
+                />
+            </div>
+        }
+      </div>
+
+      {currentUser.username ?
+        <NewRecipeForm
+          addNewTitle={addNewTitle}
+          addNewDescription={addNewDescription}
+          addNewIngredients={addNewIngredients}
+          addNewDirections={addNewDirections}
+          addNewTime={addNewTime}
+          addNewImage={addNewImage}
+          addNewRecipe={addNewRecipe}
+          displayModal={displayModal}
+          hideModal={hideModal}
+          currentUser={currentUser}
+        />
+        :
+        null
+      }
+
+
       {console.log(recipes)}
       <RecipeIndex foods={recipes}
         handleDelete={handleDelete}
@@ -144,6 +238,7 @@ const App = () => {
         addNewDirections={addNewDirections}
         addNewTime={addNewTime}
         addNewImage={addNewImage}
+        currentUser={currentUser}
       />
 
     </main>
