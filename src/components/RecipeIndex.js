@@ -7,7 +7,7 @@ const RecipeIndex = (props) => {
         {props.foods.map((recipe) => {
           return (
             <li class='recipe'>
-                <div>
+                <div class='recipe-main'>
                 {console.log(recipe._id)}
                   <h3>{recipe.title}</h3><br/>
                   {recipe.description}<br/>
@@ -21,7 +21,7 @@ const RecipeIndex = (props) => {
                     null
                   }
                 </div>
-                <div>
+                <div class='edit-form'>
                   <EditRecipeForm handleEditRecipe={props.handleEditRecipe}
                   addNewTitle={props.addNewTitle}
                   addNewDescription={props.addNewDescription}

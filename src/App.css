@@ -39,7 +39,6 @@
     background-color: #994d00;
     height: 100%;
     width: 100%;
-    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3jiDHXZGOpMNGR9BQFuq_A_oLH4jZqpRrMQ&usqp=CAU");
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -48,6 +47,15 @@
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
+}
+
+.main-header {
+    text-align: center;
+}
+
+.add-recipe {
+    position: fixed;
+    bottom:5vmin;
 }
 
 .recipe {

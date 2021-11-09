@@ -2,7 +2,7 @@ const NewRecipeForm = (props) => {
 
   return (
     <div id="newFormContainer">
-      <button class="button" onClick={props.displayModal}>Add New Recipe</button>
+      <button class="button add-recipe" onClick={props.displayModal}>Add New Recipe</button>
       <div id="modal" className="hide">
         <div id="modalInfo">
           <h2>Add New Recipe</h2>
