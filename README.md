@@ -7,3 +7,7 @@ Technologies Used: Frontend was built with React.js while the backend was built 
 Current bugs: edit form does not refresh upon submit, so you have to clear out one form before editing another recipe.
 
 Future additions: adding buttons to display/hide the login and create account forms, adding the ability for logged in users to make comments on each recipe
+
+Deployed frontend: https://project-3-front-end-seir.herokuapp.com/
+
+Deployed backend: https://project-3-recipes.herokuapp.com/recipes
