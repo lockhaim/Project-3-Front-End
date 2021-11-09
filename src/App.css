@@ -55,7 +55,8 @@
 
 .add-recipe {
     position: fixed;
-    bottom:5vmin;
+    bottom: 5vmin;
+    left: 5vmin;
 }
 
 .recipe {
@@ -144,4 +145,27 @@ body {
 
 .submit {
   width: 100%;
+}
+
+.auth-container {
+
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logout-btn {
+    position: fixed;
+    top:5vmin;
+}
+
+.auth-section {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 20px 0 20px;
 }
