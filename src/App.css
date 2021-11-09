@@ -96,8 +96,12 @@
   }
 }
 
-main {
+body {
   background-color: #994d00;
+}
+
+.newFormContainer {
+  background: transparent;
 }
 
 #modal {
@@ -128,4 +132,8 @@ main {
 
 .hide {
   display: none;
+}
+
+.submit {
+  width: 100%;
 }
