@@ -108,6 +108,7 @@ const App = () => {
                 title:newTitle,
                 description:newDescription,
                 ingredients:newIngredients,
+                directions: newDirections,
                 time:newTime,
                 image:newImage,
                 complete:newComplete,
@@ -149,7 +150,7 @@ const App = () => {
 
   const handleLogin = (userObj) => {
     axios.put(
-      'https://project-3-recipes.herokuapp.com/newaccount', userObj
+      'https://project-3-recipes.herokuapp.com/login', userObj
     ).then((response) => {
       if(response.data.username) {
         setToggleError(false)
@@ -195,20 +196,16 @@ const App = () => {
           <button onClick={handleLogout} class="button">Logout</button>
           :
             <div>
-              {toggleLogin ?
                 <LoginForm
-                  handleCreateUser={handleCreateUser}
                   handleLogin={handleLogin}
                   toggleError={toggleError}
                   errorMessage={errorMessage}
                 />
-                :
                 <NewAccountForm
                   handleCreateUser={handleCreateUser}
                   toggleError={toggleError}
                   errorMessage={errorMessage}
                 />
-              }
             </div>
         }
       </div>

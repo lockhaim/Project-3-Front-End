@@ -11,10 +11,15 @@ const RecipeIndex = (props) => {
                 {console.log(recipe._id)}
                   <h3>{recipe.title}</h3><br/>
                   {recipe.description}<br/>
-                  {recipe.time} Minutes<br/>
-                  {recipe.ingredients}<br/>
+                  Time: {recipe.time} Minutes <br/>
+                  Ingredients: {recipe.ingredients}<br/>
+                  Directions: {recipe.directions}<br/>
                   <img class='recipe-img' src={recipe.image} alt={recipe.title}></img><br/>
-                  <button class='button delete' onClick={ (event)=> {props.handleDelete(recipe)}}>Delete</button>
+                  {props.currentUser.username ?
+                    <button class='button delete' onClick={ (event)=> {props.handleDelete(recipe)}}>Delete</button>
+                    :
+                    null
+                  }
                 </div>
                 <div>
                   <EditRecipeForm handleEditRecipe={props.handleEditRecipe}
@@ -25,6 +30,7 @@ const RecipeIndex = (props) => {
                   addNewTime={props.addNewTime}
                   addNewImage={props.addNewImage}
                   recipe={recipe}
+                  currentUser={props.currentUser}
                   />
                 </div>
             </li>
