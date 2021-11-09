@@ -134,7 +134,7 @@ const App = () => {
 
   const handleCreateUser = (userObj) => {
     axios.post(
-      'https://project-3-recipes.herokuapp.com/newaccount', userObj
+      'https://project-3-recipes.herokuapp.com/user/newaccount', userObj
     ).then((response) => {
       if (response.data.username) {
         setToggleError(false)
@@ -150,7 +150,7 @@ const App = () => {
 
   const handleLogin = (userObj) => {
     axios.put(
-      'https://project-3-recipes.herokuapp.com/login', userObj
+      'https://project-3-recipes.herokuapp.com/user/login', userObj
     ).then((response) => {
       if(response.data.username) {
         setToggleError(false)
@@ -191,11 +191,11 @@ const App = () => {
   return (
     <main>
       <h1 class="main-header">Welcome to Culinary REACT-ion!</h1>
-      <div>
+      <div class="auth-container">
         {toggleLogout ?
-          <button onClick={handleLogout} class="button">Logout</button>
+          <button class="logout-btn" onClick={handleLogout} class="button">Logout</button>
           :
-            <div>
+            <div class="auth-section">
                 <LoginForm
                   handleLogin={handleLogin}
                   toggleError={toggleError}
